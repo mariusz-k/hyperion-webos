@@ -20,10 +20,14 @@ ExternalProject_Add(flatcc-native
 )
 
 SET(FLATCC_EXECUTABLE ${FLATCC_EXECUTABLE})
+
+
 add_custom_command(
         OUTPUT hyperion_reply_builder.h hyperion_reply_reader.h flatbuffers_common_builder.h flatbuffers_common_reader.h
         COMMAND ls -la ${CMAKE_CURRENT_SOURCE_DIR} 
         COMMAND ls -la ${CMAKE_CURRENT_BINARY_DIR} 
+        COMMAND ls -la ${CMAKE_CURRENT_BINARY_DIR}/native/bin
+
         COMMAND ${FLATCC_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/hyperion_reply.fbs -w --common_reader --common_builder
         DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/hyperion_reply.fbs
 )
